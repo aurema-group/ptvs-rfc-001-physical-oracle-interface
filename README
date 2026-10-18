@@ -1,0 +1,41 @@
+# PTVS-RFC-002: APRIS Parametric Circuit Breakers & Automated Yield Gating
+
+![Status](https://img.shields.io/badge/Status-Draft%20Standard-gold)
+![License](https://img.shields.io/badge/License-CC%20BY--ND%204.0-blue)
+![Dependency](https://img.shields.io/badge/Dependency-PTVS--RFC--001-navy)
+![DOI](https://img.shields.io/badge/DOI-10.5281/zenodo.21719175-navy)
+
+**Version:** 1.0.0 (October 2026)  
+**Author:** D. Aurelio Tamarit Blay, Forensics Oracle Initiative (PFOI)  
+**Governance:** PropTrust Association (Zug, Switzerland)  
+**Canonical Reference:** *Corpus Legislativum PTVS v1.0, Liber VI (APRIS)* (DOI: 10.5281/zenodo.21719175)
+
+---
+
+## 📋 Abstract
+
+While **PTVS-RFC-001** establishes the initial cryptographic anchoring of physical reality (Day-0 verification), **PTVS-RFC-002** defines the **Actuarial Parametric Resolution & Insurance System (APRIS)** — the Day-2 operational resilience module of the Prop Trust Verified Standard.
+
+APRIS provides the deterministic, smart-contract-enforced responses to continuous physical degradation, registry divergence, or operator failure. It delivers:
+
+- **Trading Circuit Breakers** that halt secondary market transfers upon verified physical pathology
+- **Automated Yield Gating** that redirects distributions to maintenance escrows upon PRRB downgrade
+- **Atomic Capex Escrow Release** for emergency repairs certified by PTCEs
+- **Integration with Parametric Physical Integrity Cover (PIPC)** for automated insurance payouts
+- **Atomic Receiver Protocol** invocation for bankruptcy-remote protection
+
+This specification directly addresses the operational resilience mandates of **MiCA Art. 58**, the prudential treatment requirements of **BCBS SCO60**, and the custody obligations of **ADGM Digital Asset Rules**.
+
+---
+
+## 🎯 Core Philosophy: Autonomous Risk Containment
+
+APRIS operates on the principle of **Forensic Primacy**: when a Prop Trust Certified Expert (PTCE) verifies a critical physical pathology or registry divergence, the smart contract must react deterministically — removing human discretion and preventing secondary market contagion.
+
+**The code is the law, and the law contains the risk first.**
+
+---
+
+## 🔗 Dependency on PTVS-RFC-001
+
+This specification **extends** (does not replace) the `IPTVSClaimInjector` interface defined in RFC-001. Any platform implementing APRIS must first implement RFC-001.
