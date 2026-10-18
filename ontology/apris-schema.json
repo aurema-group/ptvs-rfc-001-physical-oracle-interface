@@ -1,0 +1,97 @@
+{
+  "@context": {
+    "ptvs": "https://forensics-oracle.org/ontology/ptvs#",
+    "apris": "https://forensics-oracle.org/ontology/apris#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#"
+  },
+  "@graph": [
+    {
+      "@id": "apris:ParametricTriggerEvent",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Parametric Trigger Event (PTE)",
+      "rdfs:comment": "A predefined forensic condition that, when verified by a PTCE, triggers deterministic smart contract responses."
+    },
+    {
+      "@id": "apris:PTE-1",
+      "@type": "apris:ParametricTriggerEvent",
+      "rdfs:label": "Structural Collapse / Critical Pathology",
+      "rdfs:comment": "Triggers immediate ForensicFreeze and halts secondary transfers."
+    },
+    {
+      "@id": "apris:PTE-2",
+      "@type": "apris:ParametricTriggerEvent",
+      "rdfs:label": "PRRB Downgrade to Speculative",
+      "rdfs:comment": "Triggers YieldRatingAdjusted and redirects distributions to maintenance escrow."
+    },
+    {
+      "@id": "apris:PTE-3",
+      "@type": "apris:ParametricTriggerEvent",
+      "rdfs:label": "Registry Divergence / Double Pledge",
+      "rdfs:comment": "Triggers immediate freeze and Atomic Receiver invocation."
+    },
+    {
+      "@id": "apris:PTE-4",
+      "@type": "apris:ParametricTriggerEvent",
+      "rdfs:label": "Telemetry Loss > 72h",
+      "rdfs:comment": "Triggers automatic PRRB downgrade and mandatory re-inspection."
+    },
+    {
+      "@id": "apris:PTE-5",
+      "@type": "apris:ParametricTriggerEvent",
+      "rdfs:label": "Operator Control Loss",
+      "rdfs:comment": "Triggers Atomic Receiver step-in after 30 days."
+    },
+    {
+      "@id": "apris:circuitBreakerStatus",
+      "@type": "rdf:Property",
+      "rdfs:domain": "ptvs:PhysicalRealityCertificate",
+      "rdfs:range": {
+        "@type": "rdfs:Class",
+        "rdfs:subClassOf": "xsd:string",
+        "owl:oneOf": [
+          "Active",
+          "ForensicFreezeTriggered",
+          "YieldGated",
+          "CapexEscrowReleased",
+          "AtomicReceiverInvoked"
+        ]
+      },
+      "rdfs:label": "Circuit Breaker Status",
+      "rdfs:comment": "Current operational state of the asset's secondary market transferability based on APRIS parametric triggers."
+    },
+    {
+      "@id": "apris:infrastructureFee",
+      "@type": "rdf:Property",
+      "rdfs:domain": "apris:CapexEscrowRelease",
+      "rdfs:range": "xsd:decimal",
+      "rdfs:label": "Infrastructure Fee",
+      "rdfs:comment": "The fee deducted atomically during Capex Escrow release (0.1% - 0.25% of released amount)."
+    },
+    {
+      "@id": "apris:atomicReceiverAddress",
+      "@type": "rdf:Property",
+      "rdfs:domain": "apris:AtomicReceiverInvocation",
+      "rdfs:range": "xsd:string",
+      "rdfs:label": "Atomic Receiver Address",
+      "rdfs:comment": "The Ethereum address of the bankruptcy-remote receiver invoked upon severe pathology."
+    },
+    {
+      "@id": "apris:pipcPolicyReference",
+      "@type": "rdf:Property",
+      "rdfs:domain": "apris:PIPCPayout",
+      "rdfs:range": "xsd:string",
+      "rdfs:label": "PIPC Policy Reference",
+      "rdfs:comment": "Link to the Physical Integrity Parametric Cover policy that triggered the payout."
+    },
+    {
+      "@id": "apris:lastCapexReleaseTimestamp",
+      "@type": "rdf:Property",
+      "rdfs:domain": "ptvs:PhysicalRealityCertificate",
+      "rdfs:range": "xsd:dateTime",
+      "rdfs:label": "Last Capex Release Timestamp",
+      "rdfs:comment": "Unix timestamp of the last Capex Escrow release for the asset (enforces 72h cooldown)."
+    }
+  ]
+}
