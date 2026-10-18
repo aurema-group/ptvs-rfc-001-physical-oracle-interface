@@ -1,0 +1,76 @@
+# PTVS-RFC-002: APRIS Parametric Circuit Breakers & Automated Yield Gating
+
+![Status](https://img.shields.io/badge/Status-Draft%20Standard-gold)
+![License](https://img.shields.io/badge/License-CC%20BY--ND%204.0-blue)
+![Dependency](https://img.shields.io/badge/Dependency-PTVS--RFC--001-navy)
+
+**Version:** 1.0.0 (October 2026)  
+**Author:** D. Aurelio Tamarit Blay, Forensics Oracle Initiative (PFOI)  
+**Governance:** PropTrust Association (Zug, Switzerland)  
+**Canonical Reference:** *Corpus Legislativum PTVS v1.0, Liber VI (APRIS)* (DOI: 10.5281/zenodo.21719175)
+
+## Abstract
+While PTVS-RFC-001 establishes the initial cryptographic anchoring of physical reality (Day-0), **PTVS-RFC-002** defines the **Actuarial Parametric Resolution & Insurance System (APRIS)**. This specification details the automated, deterministic responses triggered by continuous physical degradation or parametric events (Day-2). It provides the technical blueprint for Trading Circuit Breakers, Automated Yield Gating, and Parametric Physical Integrity Cover (PIPC) execution, directly addressing the operational resilience requirements of **MiCA Art. 58** and **BCBS SCO60**.
+
+## 1. Core Philosophy: Autonomous Risk Containment
+APRIS operates on the principle of *Forensic Primacy*: if a Prop Trust Certified Expert (PTCE) verifies a critical physical pathology or registry divergence, the smart contract must react deterministically, removing human discretion and preventing secondary market contagion.
+
+## 2. Parametric Trigger Events (PTEs)
+The APRIS module monitors for specific, predefined forensic conditions. Upon validation by a quorum of PTCEs (or a single PTCE with elevated PRRB authority), the following triggers are activated:
+
+- **PTE-1 (Structural Collapse):** Immediate `ForensicFreezeTriggered`. Secondary transfers halted.
+- **PTE-2 (Rating Downgrade to Speculative):** `YieldRatingAdjusted`. Distribution yields are gated and redirected to a maintenance escrow.
+- **PTE-3 (Registry Divergence / Double Pledge):** Immediate freeze and invocation of the *Atomic Receiver Protocol* (CL-PTVS IV.4).
+- **PTE-4 (Telemetry Loss > 72h):** Automatic PRRB downgrade and mandatory re-inspection requirement.
+
+## 3. Smart Contract Interface (Solidity)
+This interface extends the `IPTVSClaimInjector` (RFC-001) to handle automated financial and operational containment.
+
+```solidity
+// SPDX-License-Identifier: CC-BY-ND-4.0
+pragma solidity ^0.8.20;
+
+import "./IPTVSClaimInjector.sol";
+
+/**
+ * @title IAPRISController
+ * @notice Interface for the Actuarial Parametric Resolution & Insurance System (APRIS).
+ * @dev Executes deterministic financial and operational containment upon verified physical pathology.
+ */
+interface IAPRISController {
+    
+    /**
+     * @notice Gates yield distribution and redirects funds to a maintenance escrow upon PRRB downgrade.
+     * @param _assetId The ID of the RWA.
+     * @param _newYieldBps The new, restricted yield in basis points.
+     * @param _escrowTarget The address of the authorized Capex Escrow contract.
+     */
+    function executeYieldGating(
+        bytes32 _assetId,
+        uint256 _newYieldBps,
+        address _escrowTarget
+    ) external;
+
+    /**
+     * @notice Automatically releases escrowed funds for urgent repairs upon PTCE certification, 
+     * deducting the PTVS infrastructure fee atomically.
+     * @param _assetId The ID of the RWA.
+     * @param _releaseAmount The amount to release.
+     * @param _ptceSignature Cryptographic proof of the repair certification.
+     */
+    function executeCapexRelease(
+        bytes32 _assetId,
+        uint256 _releaseAmount,
+        bytes calldata _ptceSignature
+    ) external;
+
+    /**
+     * @notice Triggers the Atomic Receiver Protocol in case of severe, irreversible physical loss or fraud.
+     * @param _assetId The ID of the RWA.
+     * @param _receiverAddress The designated bankruptcy-remote receiver address.
+     */
+    function invokeAtomicReceiver(
+        bytes32 _assetId,
+        address _receiverAddress
+    ) external;
+}
